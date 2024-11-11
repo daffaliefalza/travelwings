@@ -1,0 +1,32 @@
+.hero {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.hero button {
+  background-color: #6b8e23;
+  color: #fff;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: 0;
+  outline: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s;
+}
+
+.hero button:hover {
+  background-color: #516b1b;
+}
