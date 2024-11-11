@@ -1,0 +1,18 @@
+.banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./banner.jpg");
+  height: 50vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+}
+
+.info-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
