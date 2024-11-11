@@ -27,7 +27,7 @@ section {
   color: #6b8e23;
 }
 
-.overlay {
+.header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./banner.jpg");
   height: 100vh;
