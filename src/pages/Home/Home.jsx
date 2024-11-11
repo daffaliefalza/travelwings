@@ -1,6 +1,7 @@
 import About from "../../components/About";
 import Button from "../../components/Button";
 import DestinationCard from "../../components/DestinationCard";
+import Footer from "../../components/Footer";
 import Hero from "../../components/Hero";
 import Navbar from "../../components/Navbar";
 import ServicesCard from "../../components/ServicesCard";
@@ -73,6 +74,52 @@ const Home = () => {
           <Button text="Selengkapnya" />
         </div>
       </section>
+
+      <section className="contact">
+        <div className="container">
+          <h2>Contact Us</h2>
+          <form
+            className="contact-form"
+            action="https://formsubmit.co/liefalzaa@gmail.com"
+            method="POST"
+          >
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Your Message"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="submit-button">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+      <Footer />
     </>
   );
 };
