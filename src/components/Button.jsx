@@ -1,6 +1,11 @@
-const Button = (props) => {
-  const { text } = props;
+import { Link } from "react-router-dom";
 
-  return <button className="btn">{text}</button>;
+const Button = ({ text, to }) => {
+  return (
+    <Link to={to} className="btn">
+      {text}
+    </Link>
+  );
 };
+
 export default Button;
