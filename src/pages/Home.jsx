@@ -1,4 +1,4 @@
-import About from "../components/About";
+import AboutTravel from "../components/AboutTravel";
 import Button from "../components/Button";
 import DestinationCard from "../components/DestinationCard";
 import Footer from "../components/Footer";
@@ -11,9 +11,16 @@ const Home = () => {
     <>
       <header className="header">
         <Navbar />
-        <Hero />
+        <Hero
+          pageTitle={
+            <>
+              Mau Liburan? <br /> Di <span className="colored">T</span>
+              ravelWings Aja!
+            </>
+          }
+        />
       </header>
-      <About />
+      <AboutTravel />
       <section className="services">
         <div className="container">
           <h2>Our Services</h2>
@@ -71,7 +78,7 @@ const Home = () => {
 "
             />
           </div>
-          <Button text="Selengkapnya" />
+          <Button text="Selengkapnya" to="/destination" />
         </div>
       </section>
 
