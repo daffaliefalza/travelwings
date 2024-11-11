@@ -1,4 +1,5 @@
 import "../styles/hero.css";
+import Button from "./Button";
 
 const Hero = () => {
   return (
@@ -8,7 +9,7 @@ const Hero = () => {
           Mau Liburan? <br /> Di <span className="colored">T</span>ravelWings
           Aja!
         </h1>
-        <button>Explore</button>
+        <Button text="Explore" />
       </div>
     </section>
   );
