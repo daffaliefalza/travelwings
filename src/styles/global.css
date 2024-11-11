@@ -10,14 +10,28 @@
 
 body {
   font-family: "Nunito", sans-serif;
+  height: 2000px;
 }
 
 .container {
-  max-width: 1150px;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: 1rem;
 }
 
 section {
   margin: 4rem 0;
+}
+
+.colored {
+  color: #6b8e23;
+}
+
+.overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./banner.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
 }
