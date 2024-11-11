@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import "./styles/global.css";
 
