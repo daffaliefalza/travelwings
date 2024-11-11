@@ -57,3 +57,22 @@ h2 {
 .btn:hover {
   background-color: #516b1b;
 }
+
+@media (max-width: 768px) {
+  header nav .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header nav .container ul {
+    margin-top: 10px;
+  }
+
+  header .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  header .hero .btn {
+    font-size: 1rem;
+  }
+}

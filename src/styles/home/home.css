@@ -104,6 +104,13 @@
   text-align: justify;
 }
 
+@media (min-width: 769px) and (max-width: 950px) {
+  .services-card-wrapper,
+  .destination-card-wrapper {
+    gap: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .destination-card {
     max-width: 100%;
@@ -178,4 +185,24 @@ footer {
   color: #fff;
   padding: 1.5rem 0;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .about .container {
+    display: flex;
+    text-align: center;
+    flex-direction: column !important;
+  }
+
+  .about .container h2 {
+    margin-top: 1rem;
+  }
+
+  .services .services-card-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .destination .destination-card-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
