@@ -21,3 +21,13 @@ nav a {
   color: #fff;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  nav .container {
+    flex-direction: column !important;
+  }
+
+  nav ul {
+    margin-top: 1rem !important;
+  }
+}
