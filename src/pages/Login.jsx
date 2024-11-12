@@ -17,6 +17,7 @@ const Login = ({ onLogin }) => {
       storedUser.password === password
     ) {
       alert("Login successful");
+      localStorage.setItem("user", JSON.stringify(storedUser)); // Persist login status
       onLogin && onLogin(storedUser);
       navigate("/dashboard");
     } else {
