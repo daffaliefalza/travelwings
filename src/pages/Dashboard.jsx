@@ -14,15 +14,12 @@ const Dashboard = () => {
     image: "",
   });
 
-  // Check if the user is logged in when the page loads
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (!storedUser) {
-      // If the user is not logged in, redirect to the login page
       navigate("/login");
     } else {
-      // If the user is logged in, fetch the stored items
       const storedItems =
         JSON.parse(localStorage.getItem("travelDestination")) || [];
       setItems(storedItems);
@@ -81,8 +78,8 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Remove user from localStorage
-    navigate("/login"); // Redirect to the login page
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
