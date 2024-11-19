@@ -5,7 +5,7 @@ import "../styles/dashboard/dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
   const [newItem, setNewItem] = useState({
     name: "",
     date: "",
@@ -86,7 +86,6 @@ const Dashboard = () => {
     navigate("/login");
   };
 
-  // Filter items based on the search query
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
