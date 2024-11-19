@@ -24,6 +24,6 @@
 
 ## Feature
 
-1. Responsive front part that dynamically reacting to the admin
+1. Responsive front part that destination page dynamically reacting to the admin dashboard
 2. Login & Register
 3. Dashboard for admins
