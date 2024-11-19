@@ -1,5 +1,3 @@
-// Dashboard.jsx
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard/dashboard.css";
@@ -7,6 +5,7 @@ import "../styles/dashboard/dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [newItem, setNewItem] = useState({
     name: "",
     date: "",
@@ -72,15 +71,25 @@ const Dashboard = () => {
   };
 
   const removeItem = (id) => {
-    const updatedItems = items.filter((item) => item.id !== id);
-    setItems(updatedItems);
-    localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this destination?"
+    );
+    if (confirmed) {
+      const updatedItems = items.filter((item) => item.id !== id);
+      setItems(updatedItems);
+      localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
+    }
   };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
+
+  // Filter items based on the search query
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="dashboard">
@@ -120,29 +129,44 @@ const Dashboard = () => {
         </button>
       </section>
 
+      <section className="search-destination">
+        <h2>Search Destination</h2>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by destination name"
+          className="search-input"
+        />
+      </section>
+
       <section className="destination-wrapper">
         <h2>Destinations</h2>
         <div className="destination-cards">
-          {items.map((item) => (
-            <div key={item.id} className="destination-card">
-              <strong>{item.name}</strong>
-              <p>Date: {item.date}</p>
-              <p>Price: ${item.price}</p>
-              {item.image && (
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="destination-image"
-                />
-              )}
-              <button
-                onClick={() => removeItem(item.id)}
-                className="delete-button"
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item) => (
+              <div key={item.id} className="destination-card">
+                <strong>{item.name}</strong>
+                <p>Date: {item.date}</p>
+                <p>Price: ${item.price}</p>
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="destination-image"
+                  />
+                )}
+                <button
+                  onClick={() => removeItem(item.id)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No destinations found.</p>
+          )}
         </div>
       </section>
     </div>
