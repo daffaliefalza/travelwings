@@ -26,4 +26,5 @@
 
 1. Responsive front part that destination page dynamically reacting to the admin dashboard
 2. Login & Register
-3. Dashboard for admins
+3. Dashboard Add & Delete Destination
+4. Search functionality based on destination
