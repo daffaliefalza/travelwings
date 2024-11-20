@@ -242,6 +242,7 @@ const Dashboard = () => {
           <table>
             <thead>
               <tr>
+                <th>Destination</th>
                 <th>Name</th>
                 <th>Contact</th>
                 <th>Email</th>
@@ -251,6 +252,7 @@ const Dashboard = () => {
             <tbody>
               {bookings.map((booking, index) => (
                 <tr key={index}>
+                  <td>{booking.destination}</td>
                   <td>{booking.name}</td>
                   <td>{booking.phone}</td>
                   <td>{booking.email}</td>
