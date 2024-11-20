@@ -11,8 +11,17 @@ const Dashboard = () => {
     date: "",
     price: "",
     image: "",
+    description: "",
   });
-  const [editItemId, setEditItemId] = useState(null); // Track the item being edited
+  const [editItemId, setEditItemId] = useState(null);
+
+  const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    const storedBookings =
+      JSON.parse(localStorage.getItem("ticketBookings")) || [];
+    setBookings(storedBookings);
+  }, []);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -51,7 +60,13 @@ const Dashboard = () => {
   };
 
   const addItem = () => {
-    if (!newItem.name || !newItem.date || !newItem.price || !newItem.image) {
+    if (
+      !newItem.name ||
+      !newItem.date ||
+      !newItem.price ||
+      !newItem.image ||
+      !newItem.description
+    ) {
       alert("Please fill out all fields");
       return;
     }
@@ -64,11 +79,12 @@ const Dashboard = () => {
         date: newItem.date,
         price: newItem.price,
         image: newItem.image,
+        description: newItem.description,
       },
     ];
     setItems(updatedItems);
     localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
-    setNewItem({ name: "", date: "", price: "", image: "" });
+    setNewItem({ name: "", date: "", price: "", image: "", description: "" });
 
     alert("Item added");
   };
@@ -91,11 +107,18 @@ const Dashboard = () => {
       date: item.date,
       price: item.price,
       image: item.image,
+      description: item.description,
     });
   };
 
   const saveEdit = () => {
-    if (!newItem.name || !newItem.date || !newItem.price || !newItem.image) {
+    if (
+      !newItem.name ||
+      !newItem.date ||
+      !newItem.price ||
+      !newItem.image ||
+      !newItem.description
+    ) {
       alert("Please fill out all fields");
       return;
     }
@@ -106,7 +129,7 @@ const Dashboard = () => {
     setItems(updatedItems);
     localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
     setEditItemId(null);
-    setNewItem({ name: "", date: "", price: "", image: "" });
+    setNewItem({ name: "", date: "", price: "", image: "", description: "" });
 
     alert("Item updated");
   };
@@ -151,6 +174,12 @@ const Dashboard = () => {
             onChange={handleChange}
             placeholder="Price"
           />
+          <textarea
+            name="description"
+            value={newItem.description}
+            onChange={handleChange}
+            placeholder="Description"
+          ></textarea>
           <input type="file" onChange={handleImageChange} accept="image/*" />
         </div>
         <button
@@ -178,9 +207,6 @@ const Dashboard = () => {
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
               <div key={item.id} className="destination-card">
-                <strong>{item.name}</strong>
-                <p>Date: {item.date}</p>
-                <p>Price: ${item.price}</p>
                 {item.image && (
                   <img
                     src={item.image}
@@ -188,6 +214,11 @@ const Dashboard = () => {
                     className="destination-image"
                   />
                 )}
+                <h3>{item.name}</h3>
+                <p>Date: {item.date}</p>
+                <p>Price: ${item.price}</p>
+                <p>Description: {item.description}</p>
+
                 <button onClick={() => startEdit(item)} className="edit-button">
                   Edit
                 </button>
@@ -203,6 +234,34 @@ const Dashboard = () => {
             <p>No destinations found.</p>
           )}
         </div>
+      </section>
+
+      <section className="booking-table">
+        <h2>Bookings</h2>
+        {bookings.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking, index) => (
+                <tr key={index}>
+                  <td>{booking.name}</td>
+                  <td>{booking.phone}</td>
+                  <td>{booking.email}</td>
+                  <td>{booking.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No bookings available.</p>
+        )}
       </section>
     </div>
   );
