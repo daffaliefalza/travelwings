@@ -25,6 +25,7 @@
 ## Feature
 
 1. Responsive front part that destination page dynamically reacting to the admin dashboard
-2. Login & Register
-3. Dashboard Add & Delete Destination
-4. Search functionality based on destination
+2. Login & Register for admin
+3. Dashboard Add, Edit, & Delete Destination
+4. Dashboard Search functionality based on destination name
+5. User booking ticket
