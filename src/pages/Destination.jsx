@@ -103,6 +103,8 @@ const Destination = () => {
       email: "",
       phone: "",
     });
+
+    alert("Booked!");
   };
 
   return (
