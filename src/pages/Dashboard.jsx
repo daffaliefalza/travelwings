@@ -12,6 +12,7 @@ const Dashboard = () => {
     price: "",
     image: "",
   });
+  const [editItemId, setEditItemId] = useState(null); // Track the item being edited
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -68,6 +69,8 @@ const Dashboard = () => {
     setItems(updatedItems);
     localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
     setNewItem({ name: "", date: "", price: "", image: "" });
+
+    alert("Item added");
   };
 
   const removeItem = (id) => {
@@ -79,6 +82,33 @@ const Dashboard = () => {
       setItems(updatedItems);
       localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
     }
+  };
+
+  const startEdit = (item) => {
+    setEditItemId(item.id);
+    setNewItem({
+      name: item.name,
+      date: item.date,
+      price: item.price,
+      image: item.image,
+    });
+  };
+
+  const saveEdit = () => {
+    if (!newItem.name || !newItem.date || !newItem.price || !newItem.image) {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    const updatedItems = items.map((item) =>
+      item.id === editItemId ? { ...item, ...newItem } : item
+    );
+    setItems(updatedItems);
+    localStorage.setItem("travelDestination", JSON.stringify(updatedItems));
+    setEditItemId(null);
+    setNewItem({ name: "", date: "", price: "", image: "" });
+
+    alert("Item updated");
   };
 
   const handleLogout = () => {
@@ -100,7 +130,7 @@ const Dashboard = () => {
       </header>
 
       <section className="add-destination">
-        <h2>Add New Destination</h2>
+        <h2>{editItemId ? "Edit Destination" : "Add New Destination"}</h2>
         <div className="input-group">
           <input
             name="name"
@@ -123,8 +153,11 @@ const Dashboard = () => {
           />
           <input type="file" onChange={handleImageChange} accept="image/*" />
         </div>
-        <button onClick={addItem} className="add-button">
-          Add Item
+        <button
+          onClick={editItemId ? saveEdit : addItem}
+          className={editItemId ? "save-button" : "add-button"}
+        >
+          {editItemId ? "Save Changes" : "Add Item"}
         </button>
       </section>
 
@@ -155,6 +188,9 @@ const Dashboard = () => {
                     className="destination-image"
                   />
                 )}
+                <button onClick={() => startEdit(item)} className="edit-button">
+                  Edit
+                </button>
                 <button
                   onClick={() => removeItem(item.id)}
                   className="delete-button"
