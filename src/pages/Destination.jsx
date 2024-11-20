@@ -17,6 +17,48 @@ const Destination = () => {
   useEffect(() => {
     const storedItems =
       JSON.parse(localStorage.getItem("travelDestination")) || [];
+
+    if (storedItems.length === 0) {
+      const dummyData = [
+        {
+          id: 1,
+          name: "Labuan Bajo",
+          date: "2023-12-15",
+          price: 350,
+          image: "labuan-bajo.png",
+          description: "A beautiful destination with stunning views.",
+        },
+        {
+          id: 2,
+          name: "Bali",
+          date: "2024-01-10",
+          price: 450,
+          image: "bali.png",
+          description: "A tropical paradise with beaches and culture.",
+        },
+        {
+          id: 3,
+          name: "Lombok",
+          date: "2024-02-05",
+          price: 400,
+          image: "lombok.png",
+          description: "Explore the natural beauty and serenity of Lombok.",
+        },
+        {
+          id: 4,
+          name: "Belitung",
+          date: "2024-03-20",
+          price: 300,
+          image: "belitung.png",
+          description: "Famous for its crystal-clear waters and islands.",
+        },
+      ];
+      localStorage.setItem("travelDestination", JSON.stringify(dummyData));
+      setItems(dummyData);
+    } else {
+      setItems(storedItems);
+    }
+
     const storedBookings =
       JSON.parse(localStorage.getItem("ticketBookings")) || [];
 
